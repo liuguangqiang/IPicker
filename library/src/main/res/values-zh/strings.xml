@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">IPicker</string>
+    <string name="title_act_picker">所有图片</string>
+    <string name="btn_choose">完成</string>
+
+    <string name="btn_setting">设置</string>
+    <string name="no_permission_camera">对不起, 没有拍照的权限。</string>
+    <string name="no_permission_gallery">对不起, 没有访问照片的权限。</string>
+
+</resources>

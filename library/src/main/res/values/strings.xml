@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Library</string>
+    <string name="title_act_picker">All Pictures</string>
+    <string name="btn_choose">OK</string>
+
+    <string name="btn_setting">Go Setting</string>
+    <string name="no_permission_camera">Sorry, No permission to take pictures.</string>
+    <string name="no_permission_gallery">Sorry, No permission to access photos on your device.</string>
+
+
+</resources>

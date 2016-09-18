@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liuguangqiang.ipicker.widgets.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="1dp">
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/placeholder"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/iv_camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/placeholder"
+        android:scaleType="center"
+        android:src="@mipmap/ic_camera"
+        android:visibility="gone" />
+
+</com.liuguangqiang.ipicker.widgets.SquareRelativeLayout>
