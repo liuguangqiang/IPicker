@@ -7,6 +7,6 @@
     <string name="btn_setting">Go Setting</string>
     <string name="no_permission_camera">Sorry, No permission to take pictures.</string>
     <string name="no_permission_gallery">Sorry, No permission to access photos on your device.</string>
-
+    <string name="format_max_size">Only %1$d photos can be selected.</string>
 
 </resources>

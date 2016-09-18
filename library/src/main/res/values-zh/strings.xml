@@ -7,5 +7,6 @@
     <string name="btn_setting">设置</string>
     <string name="no_permission_camera">对不起, 没有拍照的权限。</string>
     <string name="no_permission_gallery">对不起, 没有访问照片的权限。</string>
+    <string name="format_max_size">最多只能选%1$d张图片哦。</string>
 
 </resources>

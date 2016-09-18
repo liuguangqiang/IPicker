@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -22,7 +23,6 @@ import com.liuguangqiang.ipicker.adapters.BaseAdapter;
 import com.liuguangqiang.ipicker.adapters.PhotosAdapter;
 import com.liuguangqiang.ipicker.entities.Photo;
 import com.liuguangqiang.ipicker.internal.ImageMedia;
-import com.liuguangqiang.ipicker.internal.Logger;
 import com.liuguangqiang.permissionhelper.PermissionHelper;
 import com.liuguangqiang.permissionhelper.annotations.PermissionDenied;
 import com.liuguangqiang.permissionhelper.annotations.PermissionGranted;
@@ -33,20 +33,27 @@ import java.util.List;
 /**
  * Created by Eric on 16/9/12.
  */
-public class IPickerActivity extends AppCompatActivity implements BaseAdapter.OnItemClickListener {
+public class IPickerActivity extends AppCompatActivity implements BaseAdapter.OnItemClickListener, View.OnClickListener {
+
+    public static final String ARG_SELECTED = "ARG_SELECTED";
+
+    public static final String ARG_LIMIT = "ARG_LIMIT";
 
     private static final int REQUEST_CAMERA = 1;
 
     private RecyclerView recyclerView;
+    private FloatingActionButton btnSelect;
     private PhotosAdapter adapter;
     private List<Photo> photoList = new ArrayList<>();
+    private int limit = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ipicker);
-        initViews();
         initToolbar();
+        initViews();
+        getArguments();
         requestPhotos();
     }
 
@@ -74,12 +81,65 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
         adapter = new PhotosAdapter(this, photoList);
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
+
+        btnSelect = (FloatingActionButton) findViewById(R.id.btn_select);
+        btnSelect.setOnClickListener(this);
+    }
+
+    private void getArguments() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            if (bundle.containsKey(ARG_LIMIT)) {
+                limit = bundle.getInt(ARG_LIMIT);
+                if (limit == 0) limit = 1;
+
+                adapter.setSingleSelection(isSingleSelection());
+                btnSelect.setVisibility(limit > 1 ? View.VISIBLE : View.GONE);
+            }
+
+            if (bundle.containsKey(ARG_SELECTED)) {
+                adapter.addSelected(bundle.getStringArrayList(ARG_SELECTED));
+            }
+        }
+    }
+
+    private boolean isSingleSelection() {
+        return limit == 1;
     }
 
     @Override
     public void onItemClick(View view, int position) {
         if (position == 0) {
             requestCamera();
+        } else if (isSingleSelection()) {
+            IPicker.finish(photoList.get(position).path);
+            finish();
+        } else if (adapter.isSelected(photoList.get(position).path)) {
+            removeSeleted(position);
+        } else {
+            addSeleted(position);
+        }
+    }
+
+    private void removeSeleted(int position) {
+        adapter.removeSelected(photoList.get(position));
+        adapter.notifyItemChanged(position);
+    }
+
+    private void addSeleted(int position) {
+        if ((adapter.getSelectedTotal() < limit)) {
+            adapter.addSelected(photoList.get(position));
+            adapter.notifyItemChanged(position);
+        } else {
+            Snackbar.make(recyclerView, getString(R.string.format_max_size, limit), Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.btn_select) {
+            IPicker.finish(adapter.getSelected());
+            finish();
         }
     }
 
@@ -127,7 +187,6 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
 
     private void deleteTemp() {
         if (tempUri != null) {
-            Logger.i("delete temp:" + tempUri.toString());
             getContentResolver().delete(tempUri, null, null);
         }
     }
@@ -155,9 +214,15 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CAMERA:
-                    Logger.i("add a photo:" + tempUri.toString());
-                    photoList.add(1, new Photo(tempUri.toString()));
-                    adapter.notifyDataSetChanged();
+                    if (isSingleSelection()) {
+                        IPicker.finish(tempUri.toString());
+                        finish();
+                    } else {
+                        Photo photo = new Photo(tempUri.toString());
+                        photoList.add(1, photo);
+                        adapter.addSelected(photo);
+                        adapter.notifyDataSetChanged();
+                    }
                     break;
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {

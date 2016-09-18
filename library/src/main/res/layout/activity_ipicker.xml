@@ -20,12 +20,14 @@
             android:layout_marginRight="-1.5dp" />
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="16dp"
-            android:src="@mipmap/ic_action_check" />
+            android:src="@mipmap/ic_action_check"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
