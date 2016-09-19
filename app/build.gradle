@@ -21,12 +21,14 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
     compile 'com.github.liuguangqiang.permissionhelper:permissionhelper:0.1.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.0'
     testCompile 'junit:junit:4.12'
     compile project(':library')
 }
