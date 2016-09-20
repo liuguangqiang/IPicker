@@ -56,6 +56,13 @@ public class ImageMedia {
         return photos;
     }
 
+    /**
+     * Return the absolutely path of a uri.
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
     public static String getFilePath(Context context, Uri uri) {
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
