@@ -1,8 +1,13 @@
 apply plugin: 'com.android.library'
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
+
+    lintOptions {
+        abortOnError false
+    }
 
     defaultConfig {
         minSdkVersion 15

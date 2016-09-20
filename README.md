@@ -6,6 +6,26 @@ A material design style pictures selector.
 ![](arts/1.png)
 
 ![](arts/2.png)
+
+## Usage
+
+### Gradle
+```
+dependencies {
+   	compile 'com.liuguangqiang.ipicker:library:0.1.0'
+}
+```
+
+### Maven
+```
+<dependency>
+  <groupId>com.liuguangqiang.ipicker</groupId>
+  <artifactId>library</artifactId>
+  <version>0.1.0</version>
+  <type>aar</type>
+</dependency>
+```
+
 ## License
 
     Copyright 2016 Eric Liu
