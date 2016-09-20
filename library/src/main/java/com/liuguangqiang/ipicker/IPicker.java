@@ -21,6 +21,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.liuguangqiang.ipicker.events.IPickerEvent;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +32,6 @@ import java.util.List;
  * Created by Eric on 16/9/18.
  */
 public class IPicker {
-
-    private static OnSelectListener listener;
 
     /**
      * Limit the count of picture selected.
@@ -48,20 +50,24 @@ public class IPicker {
         limit = size;
     }
 
-    public static void setListener(OnSelectListener onSelectListener) {
-        listener = onSelectListener;
-    }
-
+    /**
+     * Finish the IPicker and post a event to observer.
+     *
+     * @param path
+     */
     public static void finish(String path) {
         List<String> paths = new ArrayList<>();
         paths.add(path);
         finish(paths);
     }
 
+    /**
+     * Finish the IPicker and post a event to observer.
+     *
+     * @param paths
+     */
     public static void finish(List<String> paths) {
-        if (listener != null) {
-            listener.onSelected(paths);
-        }
+        EventBus.getDefault().post(new IPickerEvent(paths));
     }
 
     /**
@@ -93,12 +99,6 @@ public class IPicker {
         }
         intent.putExtras(bundle);
         context.startActivity(intent);
-    }
-
-    public interface OnSelectListener {
-
-        void onSelected(List<String> paths);
-
     }
 
 }
