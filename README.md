@@ -2,6 +2,10 @@ IPicker
 ======================================
 A material design style pictures selector.
 
+## Screenshot
+![](arts/1.png)
+
+![](arts/2.png)
 ## License
 
     Copyright 2016 Eric Liu
