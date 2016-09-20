@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.liuguangqiang.ipicker.adapters.BaseAdapter;
+import com.liuguangqiang.ipicker.internal.Logger;
 
 import java.util.List;
 

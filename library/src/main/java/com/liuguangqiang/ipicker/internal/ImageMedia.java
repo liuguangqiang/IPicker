@@ -56,4 +56,14 @@ public class ImageMedia {
         return photos;
     }
 
+    public static String getFilePath(Context context, Uri uri) {
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String filePath = cursor.getString(columnIndex);
+        cursor.close();
+        return filePath;
+    }
+
 }
