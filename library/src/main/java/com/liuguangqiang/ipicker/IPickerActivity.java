@@ -109,6 +109,7 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
     }
 
     private void initViews() {
+        getWindow().setBackgroundDrawable(null);
         recyclerView = (RecyclerView) findViewById(R.id.rv_photos);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 4, GridLayoutManager.VERTICAL, false));
         adapter = new PhotosAdapter(this, photoList);
