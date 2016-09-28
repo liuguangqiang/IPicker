@@ -2,14 +2,9 @@ IPicker
 ======================================
 A material design style pictures selector.
 
-## Screenshot
-![](arts/1.png)
-
-![](arts/2.png)
-
 ## Usage
-
 ### Gradle
+
 ```
 dependencies {
    	compile 'com.liuguangqiang.ipicker:library:0.1.1'
@@ -25,6 +20,43 @@ dependencies {
   <type>aar</type>
 </dependency>
 ```
+
+### Manifest
+
+```
+<activity
+     android:name="com.liuguangqiang.ipicker.IPickerActivity"
+     android:screenOrientation="portrait"
+     android:theme="@style/IPickerTheme" />
+```
+
+### Theme
+```
+<style name="IPickerTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+     <item name="colorPrimary">@color/color_primary</item>
+     <item name="colorPrimaryDark">@color/color_primary_dark</item>
+     <item name="colorAccent">@color/color_primary</item>
+ </style>
+```
+
+### Open the picker
+```java
+IPicker.setLimit(1);
+IPicker.open(context);
+```
+
+Receive the selected images by EventBus.
+
+```
+@Subscribe
+public void onEvent(IPickerEvent event) {
+}
+```
+
+## Screenshot
+![](arts/1.png)
+
+![](arts/2.png)
 
 ## License
 
