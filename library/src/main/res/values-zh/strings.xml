@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="app_name">IPicker</string>
     <string name="title_act_picker">选择照片</string>
     <string name="action_done">完成</string>
 

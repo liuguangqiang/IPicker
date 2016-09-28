@@ -252,7 +252,7 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
             switch (requestCode) {
                 case REQUEST_CAMERA:
                     if (isSingleSelection()) {
-                        IPicker.finish(tempUri.toString());
+                        IPicker.finish(ImageMedia.getFilePath(getApplicationContext(), tempUri));
                         finish();
                     } else {
                         String path = ImageMedia.getFilePath(getApplicationContext(), tempUri);

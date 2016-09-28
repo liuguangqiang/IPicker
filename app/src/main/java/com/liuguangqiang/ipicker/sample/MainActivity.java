@@ -26,10 +26,10 @@ import android.widget.Button;
 import com.liuguangqiang.ipicker.IPicker;
 import com.liuguangqiang.ipicker.events.IPickerEvent;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import java.util.ArrayList;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 /**
  * A Sample
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        IPicker.setLimit(5);
+        IPicker.setLimit(1);
         Button button = (Button) findViewById(R.id.open_picker);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
