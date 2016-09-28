@@ -12,7 +12,7 @@ A material design style pictures selector.
 ### Gradle
 ```
 dependencies {
-   	compile 'com.liuguangqiang.ipicker:library:0.1.0'
+   	compile 'com.liuguangqiang.ipicker:library:0.1.1'
 }
 ```
 
@@ -21,7 +21,7 @@ dependencies {
 <dependency>
   <groupId>com.liuguangqiang.ipicker</groupId>
   <artifactId>library</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <type>aar</type>
 </dependency>
 ```
