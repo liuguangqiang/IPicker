@@ -38,16 +38,22 @@ public class IPicker {
      */
     private static int limit = 1;
 
+    private static boolean cropEnable = false;
+
     private IPicker() {
     }
 
     /**
      * Limit the count of picture selected.
      *
-     * @param size
+     * @param limit
      */
-    public static void setLimit(int size) {
-        limit = size;
+    public static void setLimit(int limit) {
+        IPicker.limit = limit;
+    }
+
+    public static void setCropEnable(boolean cropEnable) {
+        IPicker.cropEnable = cropEnable;
     }
 
     /**
@@ -93,6 +99,7 @@ public class IPicker {
 
         Bundle bundle = new Bundle();
         bundle.putInt(IPickerActivity.ARG_LIMIT, limit);
+        bundle.putBoolean(IPickerActivity.ARG_CROP_ENABLE, cropEnable);
         if (selected != null && !selected.isEmpty()) {
             bundle.putStringArrayList(IPickerActivity.ARG_SELECTED, selected);
 

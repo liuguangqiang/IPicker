@@ -38,12 +38,14 @@ import android.widget.RelativeLayout;
 
 import com.liuguangqiang.ipicker.adapters.BaseAdapter;
 import com.liuguangqiang.ipicker.adapters.PhotosAdapter;
+import com.liuguangqiang.ipicker.crop.Crop;
 import com.liuguangqiang.ipicker.entities.Photo;
 import com.liuguangqiang.ipicker.internal.ImageMedia;
 import com.liuguangqiang.permissionhelper.PermissionHelper;
 import com.liuguangqiang.permissionhelper.annotations.PermissionDenied;
 import com.liuguangqiang.permissionhelper.annotations.PermissionGranted;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,7 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
 
     public static final String ARG_SELECTED = "ARG_SELECTED";
     public static final String ARG_LIMIT = "ARG_LIMIT";
+    public static final String ARG_CROP_ENABLE = "ARG_CROP_ENABLE";
 
     private static final int REQUEST_CAMERA = 1;
     private static final int ACTION_DONE = 0;
@@ -63,6 +66,7 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
     private PhotosAdapter adapter;
     private List<Photo> photoList = new ArrayList<>();
     private int limit = 1;
+    private boolean cropEnable = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -133,6 +137,10 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
                 adapter.addSelected(bundle.getStringArrayList(ARG_SELECTED));
                 updateTitle();
             }
+
+            if (bundle.containsKey(ARG_CROP_ENABLE)) {
+                cropEnable = bundle.getBoolean(ARG_CROP_ENABLE, false);
+            }
         }
     }
 
@@ -145,8 +153,12 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
         if (position == 0) {
             requestCamera();
         } else if (isSingleSelection()) {
-            IPicker.finish(photoList.get(position).path);
-            finish();
+            if (cropEnable) {
+                cropImage(Uri.parse("file://" + photoList.get(position).path));
+            } else {
+                IPicker.finish(photoList.get(position).path);
+                finish();
+            }
         } else if (adapter.isSelected(photoList.get(position).path)) {
             removeSelected(position);
         } else {
@@ -252,8 +264,12 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
             switch (requestCode) {
                 case REQUEST_CAMERA:
                     if (isSingleSelection()) {
-                        IPicker.finish(ImageMedia.getFilePath(getApplicationContext(), tempUri));
-                        finish();
+                        if (cropEnable) {
+                            cropImage(tempUri);
+                        } else {
+                            IPicker.finish(ImageMedia.getFilePath(getApplicationContext(), tempUri));
+                            finish();
+                        }
                     } else {
                         String path = ImageMedia.getFilePath(getApplicationContext(), tempUri);
                         Photo photo = new Photo(path);
@@ -264,6 +280,10 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
                         adapter.notifyDataSetChanged();
                         updateTitle();
                     }
+                    break;
+                case Crop.REQUEST_CROP:
+                    IPicker.finish(Crop.getOutput(data).toString());
+                    finish();
                     break;
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
@@ -284,6 +304,11 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
                 startActivity(intent);
             }
         }).show();
+    }
+
+    private void cropImage(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped" + System.currentTimeMillis()));
+        Crop.of(source, destination).asSquare().start(this);
     }
 
 }

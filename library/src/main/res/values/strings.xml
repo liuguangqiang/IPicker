@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="title_act_picker">All Pictures</string>
     <string name="action_done">DONE</string>
@@ -7,5 +7,13 @@
     <string name="no_permission_camera">Sorry, No permission to take pictures.</string>
     <string name="no_permission_gallery">Sorry, No permission to access photos on your device.</string>
     <string name="format_max_size">Only %1$d photos can be selected.</string>
+
+    <!--crop-->
+    <string name="crop__saving">Saving picture…</string>
+    <string name="crop__wait">Please wait…</string>
+    <string name="crop__pick_error">No image sources available</string>
+
+    <string name="crop__done">DONE</string>
+    <string name="crop__cancel" tools:ignore="ButtonCase">CANCEL</string>
 
 </resources>
