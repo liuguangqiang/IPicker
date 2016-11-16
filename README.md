@@ -2,6 +2,9 @@ IPicker
 ======================================
 A material design style pictures selector.
 
+## Screenshot
+<img src="arts/1.png" width="30%"> <img src="arts/2.png" width="30%"> <img src="arts/clipping.png" width="30%">
+
 ## Usage
 ### Gradle
 
@@ -52,11 +55,6 @@ Receive the selected images by EventBus.
 public void onEvent(IPickerEvent event) {
 }
 ```
-
-## Screenshot
-![](arts/1.png)
-
-![](arts/2.png)
 
 ## License
 
