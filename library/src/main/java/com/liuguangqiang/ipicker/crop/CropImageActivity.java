@@ -30,10 +30,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.liuguangqiang.ipicker.IPicker;
 import com.liuguangqiang.ipicker.R;
 
 import java.io.IOException;
@@ -45,6 +48,8 @@ import java.util.concurrent.CountDownLatch;
  * Modified from original in AOSP.
  */
 public class CropImageActivity extends MonitoredActivity {
+
+    private static final int ACTION_DONE = 0;
 
     private static final int SIZE_DEFAULT = 2048;
     private static final int SIZE_LIMIT = 4096;
@@ -82,6 +87,36 @@ public class CropImageActivity extends MonitoredActivity {
             return;
         }
         startCrop();
+
+        initToolbar();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, ACTION_DONE, 0, R.string.action_done).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            case ACTION_DONE:
+                onSaveClicked();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void initToolbar() {
+        setTitle(R.string.crop__title);
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_close_white);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -102,19 +137,6 @@ public class CropImageActivity extends MonitoredActivity {
             public void recycle(Bitmap b) {
                 b.recycle();
                 System.gc();
-            }
-        });
-
-        findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                setResult(RESULT_CANCELED);
-                finish();
-            }
-        });
-
-        findViewById(R.id.btn_done).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onSaveClicked();
             }
         });
     }
