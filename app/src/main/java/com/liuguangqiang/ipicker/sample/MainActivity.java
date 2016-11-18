@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        IPicker.setLimit(1);
+        IPicker.setLimit(9);
         IPicker.setCropEnable(true);
         Button button = (Button) findViewById(R.id.open_picker);
         button.setOnClickListener(new View.OnClickListener() {
