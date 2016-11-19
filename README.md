@@ -10,7 +10,7 @@ A material design style pictures selector.
 
 ```
 dependencies {
-   	compile 'com.liuguangqiang.ipicker:library:0.1.1'
+   	compile 'com.liuguangqiang.ipicker:library:1.0.0'
 }
 ```
 
@@ -19,7 +19,7 @@ dependencies {
 <dependency>
   <groupId>com.liuguangqiang.ipicker</groupId>
   <artifactId>library</artifactId>
-  <version>0.1.1</version>
+  <version>1.0.0</version>
   <type>aar</type>
 </dependency>
 ```
