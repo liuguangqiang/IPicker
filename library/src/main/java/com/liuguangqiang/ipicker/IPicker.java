@@ -40,6 +40,8 @@ public class IPicker {
 
     private static boolean cropEnable = false;
 
+    private static OnSelectedListener onSelectedListener;
+
     private IPicker() {
     }
 
@@ -54,6 +56,10 @@ public class IPicker {
 
     public static void setCropEnable(boolean cropEnable) {
         IPicker.cropEnable = cropEnable;
+    }
+
+    public static void setOnSelectedListener(OnSelectedListener listener) {
+        IPicker.onSelectedListener = listener;
     }
 
     /**
@@ -74,6 +80,9 @@ public class IPicker {
      */
     public static void finish(List<String> paths) {
         EventBus.getDefault().post(new IPickerEvent(paths));
+        if (onSelectedListener != null) {
+            onSelectedListener.onSelected(paths);
+        }
     }
 
     /**
@@ -106,6 +115,12 @@ public class IPicker {
         }
         intent.putExtras(bundle);
         context.startActivity(intent);
+    }
+
+    public interface OnSelectedListener {
+
+        void onSelected(List<String> paths);
+
     }
 
 }

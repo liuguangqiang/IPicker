@@ -10,7 +10,7 @@ A material design style pictures selector.
 
 ```
 dependencies {
-   	compile 'com.liuguangqiang.ipicker:library:1.0.0'
+   	compile 'com.liuguangqiang.ipicker:library:1.0.1'
 }
 ```
 
@@ -19,7 +19,7 @@ dependencies {
 <dependency>
   <groupId>com.liuguangqiang.ipicker</groupId>
   <artifactId>library</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>aar</type>
 </dependency>
 ```
@@ -48,12 +48,23 @@ IPicker.setLimit(1);
 IPicker.open(context);
 ```
 
-Receive the selected images by EventBus.
+Return the selected images by EventBus.
 
 ```
 @Subscribe
 public void onEvent(IPickerEvent event) {
 }
+```
+
+Also support to get the selected images by a listener.
+
+```
+IPicker.setOnSelectedListener(new IPicker.OnSelectedListener() {
+
+      @Override
+      public void onSelected(List<String> paths) {}
+
+});
 ```
 
 ## License

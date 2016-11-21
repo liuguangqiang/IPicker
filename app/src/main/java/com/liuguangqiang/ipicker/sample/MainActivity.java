@@ -27,6 +27,7 @@ import com.liuguangqiang.ipicker.IPicker;
 import com.liuguangqiang.ipicker.events.IPickerEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
@@ -68,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         IPicker.setLimit(9);
         IPicker.setCropEnable(true);
+        IPicker.setOnSelectedListener(new IPicker.OnSelectedListener() {
+            @Override
+            public void onSelected(List<String> paths) {
+
+            }
+        });
         Button button = (Button) findViewById(R.id.open_picker);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
