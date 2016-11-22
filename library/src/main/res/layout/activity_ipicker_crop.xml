@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <com.liuguangqiang.ipicker.crop.CropImageView
-        android:id="@+id/crop_image"
+        android:id="@+id/ipicker_crop_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/crop__texture" />
+        android:background="@drawable/crop_texture" />
 
 </LinearLayout>
