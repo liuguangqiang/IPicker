@@ -27,6 +27,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
+import com.liuguangqiang.ipicker.CropImageActivity;
 import com.liuguangqiang.ipicker.R;
 
 /**

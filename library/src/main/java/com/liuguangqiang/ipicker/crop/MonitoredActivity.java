@@ -25,7 +25,7 @@ import java.util.ArrayList;
 /*
  * Modified from original in AOSP.
  */
-abstract class MonitoredActivity extends AppCompatActivity {
+public abstract class MonitoredActivity extends AppCompatActivity {
 
     private final ArrayList<LifeCycleListener> listeners = new ArrayList<LifeCycleListener>();
 

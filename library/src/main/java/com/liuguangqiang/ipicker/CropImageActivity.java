@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.liuguangqiang.ipicker.crop;
+package com.liuguangqiang.ipicker;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -32,12 +32,17 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.liuguangqiang.ipicker.IPicker;
-import com.liuguangqiang.ipicker.R;
+import com.liuguangqiang.ipicker.crop.Crop;
+import com.liuguangqiang.ipicker.crop.CropImageView;
+import com.liuguangqiang.ipicker.crop.CropUtil;
+import com.liuguangqiang.ipicker.crop.HighlightView;
+import com.liuguangqiang.ipicker.crop.ImageViewTouchBase;
+import com.liuguangqiang.ipicker.crop.Log;
+import com.liuguangqiang.ipicker.crop.MonitoredActivity;
+import com.liuguangqiang.ipicker.crop.RotateBitmap;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -128,9 +133,9 @@ public class CropImageActivity extends MonitoredActivity {
     }
 
     private void setupViews() {
-        setContentView(R.layout.crop__activity_crop);
+        setContentView(R.layout.activity_ipicker_crop);
 
-        imageView = (CropImageView) findViewById(R.id.crop_image);
+        imageView = (CropImageView) findViewById(R.id.ipicker_crop_image);
         imageView.context = this;
         imageView.setRecycler(new ImageViewTouchBase.Recycler() {
             @Override

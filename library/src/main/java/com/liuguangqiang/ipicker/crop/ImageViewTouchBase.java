@@ -29,7 +29,7 @@ import android.widget.ImageView;
 /*
  * Modified from original in AOSP.
  */
-abstract class ImageViewTouchBase extends ImageView {
+public abstract class ImageViewTouchBase extends ImageView {
 
     private static final float SCALE_RATE = 1.25F;
 
@@ -195,7 +195,7 @@ abstract class ImageViewTouchBase extends ImageView {
     // Center as much as possible in one or both axis.  Centering is defined as follows:
     // * If the image is scaled down below the view's dimensions then center it.
     // * If the image is scaled larger than the view and is translated out of view then translate it back into view.
-    protected void center() {
+    public void center() {
         final Bitmap bitmap = bitmapDisplayed.getBitmap();
         if (bitmap == null) {
             return;
@@ -251,11 +251,11 @@ abstract class ImageViewTouchBase extends ImageView {
     }
 
     // Get the scale factor out of the matrix.
-    protected float getScale(Matrix matrix) {
+    public float getScale(Matrix matrix) {
         return getValue(matrix, Matrix.MSCALE_X);
     }
 
-    protected float getScale() {
+    public float getScale() {
         return getScale(suppMatrix);
     }
 

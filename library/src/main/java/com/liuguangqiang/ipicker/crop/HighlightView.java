@@ -41,7 +41,7 @@ import com.liuguangqiang.ipicker.R;
  * image, another is screen. computeLayout() uses matrix to map from image
  * space to screen space.
  */
-class HighlightView {
+public class HighlightView {
 
     public static final int GROW_NONE = (1 << 0);
     public static final int GROW_LEFT_EDGE = (1 << 1);
@@ -87,14 +87,14 @@ class HighlightView {
 
     private void initStyles(Context context) {
         TypedValue outValue = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.cropImageStyle, outValue, true);
-        TypedArray attributes = context.obtainStyledAttributes(outValue.resourceId, R.styleable.CropImageView);
+        context.getTheme().resolveAttribute(R.attr.IPicker_CropImageStyle, outValue, true);
+        TypedArray attributes = context.obtainStyledAttributes(outValue.resourceId, R.styleable.IPicker_CropImageView);
         try {
-            showThirds = attributes.getBoolean(R.styleable.CropImageView_showThirds, false);
-            showCircle = attributes.getBoolean(R.styleable.CropImageView_showCircle, false);
-            highlightColor = attributes.getColor(R.styleable.CropImageView_highlightColor,
+            showThirds = attributes.getBoolean(R.styleable.IPicker_CropImageView_ipicker_showThirds, false);
+            showCircle = attributes.getBoolean(R.styleable.IPicker_CropImageView_ipicker_showCircle, false);
+            highlightColor = attributes.getColor(R.styleable.IPicker_CropImageView_ipicker_highlightColor,
                     DEFAULT_HIGHLIGHT_COLOR);
-            handleMode = HandleMode.values()[attributes.getInt(R.styleable.CropImageView_showHandles, 0)];
+            handleMode = HandleMode.values()[attributes.getInt(R.styleable.IPicker_CropImageView_ipicker_showHandles, 0)];
         } finally {
             attributes.recycle();
         }

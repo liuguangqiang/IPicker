@@ -23,13 +23,15 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.liuguangqiang.ipicker.CropImageActivity;
+
 import java.util.ArrayList;
 
 public class CropImageView extends ImageViewTouchBase {
 
-    ArrayList<HighlightView> highlightViews = new ArrayList<HighlightView>();
-    HighlightView motionHighlightView;
-    Context context;
+    public ArrayList<HighlightView> highlightViews = new ArrayList<HighlightView>();
+    public HighlightView motionHighlightView;
+    public Context context;
 
     private float lastX;
     private float lastY;

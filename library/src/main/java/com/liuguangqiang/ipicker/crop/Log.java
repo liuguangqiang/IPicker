@@ -16,7 +16,7 @@
 
 package com.liuguangqiang.ipicker.crop;
 
-class Log {
+public class Log {
 
     private static final String TAG = "android-crop";
 
