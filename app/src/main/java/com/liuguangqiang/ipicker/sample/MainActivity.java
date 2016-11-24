@@ -26,11 +26,11 @@ import android.widget.Button;
 import com.liuguangqiang.ipicker.IPicker;
 import com.liuguangqiang.ipicker.events.IPickerEvent;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
 
 /**
  * A Sample
@@ -61,18 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Subscribe
     public void onEvent(IPickerEvent event) {
-        selectPictures.clear();
-        selectPictures.addAll(event.selected);
-        adapter.notifyDataSetChanged();
+//        selectPictures.clear();
+//        selectPictures.addAll(event.selected);
+//        adapter.notifyDataSetChanged();
     }
 
     private void initViews() {
-        IPicker.setLimit(9);
+        IPicker.setLimit(1);
         IPicker.setCropEnable(true);
         IPicker.setOnSelectedListener(new IPicker.OnSelectedListener() {
             @Override
             public void onSelected(List<String> paths) {
-
+                selectPictures.clear();
+                selectPictures.addAll(paths);
+                adapter.notifyDataSetChanged();
             }
         });
         Button button = (Button) findViewById(R.id.open_picker);

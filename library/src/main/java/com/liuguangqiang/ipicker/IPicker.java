@@ -23,10 +23,10 @@ import android.os.Bundle;
 
 import com.liuguangqiang.ipicker.events.IPickerEvent;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Eric on 16/9/18.
