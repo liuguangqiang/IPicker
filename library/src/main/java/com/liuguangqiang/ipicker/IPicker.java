@@ -23,8 +23,6 @@ import android.os.Bundle;
 
 import com.liuguangqiang.ipicker.events.IPickerEvent;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +77,6 @@ public class IPicker {
      * @param paths
      */
     public static void finish(List<String> paths) {
-        EventBus.getDefault().post(new IPickerEvent(paths));
         if (onSelectedListener != null) {
             onSelectedListener.onSelected(paths);
         }
@@ -120,7 +117,5 @@ public class IPicker {
     public interface OnSelectedListener {
 
         void onSelected(List<String> paths);
-
     }
-
 }

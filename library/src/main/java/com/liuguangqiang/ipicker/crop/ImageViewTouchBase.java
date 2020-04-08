@@ -24,12 +24,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
-import android.widget.ImageView;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /*
  * Modified from original in AOSP.
  */
-public abstract class ImageViewTouchBase extends ImageView {
+public abstract class ImageViewTouchBase extends AppCompatImageView {
 
     private static final float SCALE_RATE = 1.25F;
 

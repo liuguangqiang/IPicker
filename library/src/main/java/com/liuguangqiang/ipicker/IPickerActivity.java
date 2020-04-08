@@ -24,18 +24,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.liuguangqiang.ipicker.adapters.BaseAdapter;
 import com.liuguangqiang.ipicker.adapters.PhotosAdapter;
 import com.liuguangqiang.ipicker.crop.Crop;
@@ -48,6 +42,13 @@ import com.liuguangqiang.permissionhelper.annotations.PermissionGranted;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Eric on 16/9/12.
@@ -197,7 +198,7 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
     }
 
     private void requestCamera() {
-        PermissionHelper.getInstance().requestPermission(this, Manifest.permission.CAMERA);
+        PermissionHelper.getInstance().requestPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     @Override
@@ -216,12 +217,12 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
         promptNoPermission(R.string.no_permission_gallery);
     }
 
-    @PermissionGranted(permission = Manifest.permission.CAMERA)
+    @PermissionGranted(permission = Manifest.permission.WRITE_EXTERNAL_STORAGE)
     public void cameraGranted() {
         takePicture();
     }
 
-    @PermissionDenied(permission = Manifest.permission.CAMERA)
+    @PermissionDenied(permission = Manifest.permission.WRITE_EXTERNAL_STORAGE)
     public void cameraDenied() {
         promptNoPermission(R.string.no_permission_camera);
     }
@@ -310,5 +311,4 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
         Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped" + System.currentTimeMillis()));
         Crop.of(source, destination).asSquare().start(this);
     }
-
 }

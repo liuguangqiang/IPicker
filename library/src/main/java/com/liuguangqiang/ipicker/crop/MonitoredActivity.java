@@ -16,11 +16,11 @@
 
 package com.liuguangqiang.ipicker.crop;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /*
  * Modified from original in AOSP.

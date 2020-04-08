@@ -16,21 +16,19 @@
 
 package com.liuguangqiang.ipicker.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
 import com.liuguangqiang.ipicker.IPicker;
 import com.liuguangqiang.ipicker.events.IPickerEvent;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A Sample
@@ -46,29 +44,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
-    }
-
-    @Subscribe
-    public void onEvent(IPickerEvent event) {
-//        selectPictures.clear();
-//        selectPictures.addAll(event.selected);
-//        adapter.notifyDataSetChanged();
     }
 
     private void initViews() {
-        IPicker.setLimit(1);
-        IPicker.setCropEnable(true);
+        IPicker.setLimit(9);
+//        IPicker.setCropEnable(true);
         IPicker.setOnSelectedListener(new IPicker.OnSelectedListener() {
             @Override
             public void onSelected(List<String> paths) {

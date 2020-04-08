@@ -17,7 +17,6 @@
 package com.liuguangqiang.ipicker.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,8 @@ import com.liuguangqiang.ipicker.entities.Photo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Eric on 16/9/12.
@@ -106,7 +107,5 @@ public class PhotosAdapter extends BaseAdapter<Photo, PhotosAdapter.ViewHolder> 
                 Glide.with(itemView.getContext()).load(entity.path).into(ivPhoto);
             }
         }
-
     }
-
 }

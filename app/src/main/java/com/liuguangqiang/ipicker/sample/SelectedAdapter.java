@@ -17,16 +17,16 @@
 package com.liuguangqiang.ipicker.sample;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.liuguangqiang.ipicker.adapters.BaseAdapter;
-import com.liuguangqiang.ipicker.internal.Logger;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Eric on 16/9/12.
