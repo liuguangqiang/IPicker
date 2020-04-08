@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.liuguangqiang.ipicker.IPicker;
-import com.liuguangqiang.ipicker.events.IPickerEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        IPicker.setLimit(9);
-//        IPicker.setCropEnable(true);
+        IPicker.setLimit(1);
         IPicker.setOnSelectedListener(new IPicker.OnSelectedListener() {
             @Override
             public void onSelected(List<String> paths) {
@@ -57,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-        Button button = (Button) findViewById(R.id.open_picker);
+        Button button = findViewById(R.id.open_picker);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IPicker.open(getApplicationContext(), selectPictures);
+                IPicker.open(getApplicationContext());
             }
         });
         adapter = new SelectedAdapter(getApplicationContext(), selectPictures);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_photos);
+        recyclerView = findViewById(R.id.rv_photos);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 4, GridLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
     }

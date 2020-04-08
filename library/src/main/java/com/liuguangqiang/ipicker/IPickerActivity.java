@@ -115,13 +115,12 @@ public class IPickerActivity extends AppCompatActivity implements BaseAdapter.On
 
     private void initViews() {
         getWindow().setBackgroundDrawable(null);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_photos);
+        recyclerView = findViewById(R.id.rv_photos);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 4, GridLayoutManager.VERTICAL, false));
         adapter = new PhotosAdapter(this, photoList);
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
-
-        layoutContainer = (RelativeLayout) findViewById(R.id.layout_container);
+        layoutContainer = findViewById(R.id.layout_container);
     }
 
     private void getArguments() {

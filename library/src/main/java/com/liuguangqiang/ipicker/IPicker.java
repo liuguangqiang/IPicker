@@ -21,8 +21,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.liuguangqiang.ipicker.events.IPickerEvent;
-
 import java.util.ArrayList;
 import java.util.List;
 
